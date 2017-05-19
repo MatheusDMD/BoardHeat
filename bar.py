@@ -139,15 +139,21 @@ def main():
                            d["col"],
                            d["row"])
     mult_lambda = calc_mult_lambda(d["alpha"], d["d_x"], d["d_t"])
-    # list_current = get_temps_in_time(list_prev, d["t"], mult_lambda, d["row"], d["col"])
+    #list_current = get_temps_in_time(list_prev, d["t"], mult_lambda, d["row"], d["col"])
     # for i in range(d["col"]):
     #     print(list_current[i])
     # plot_color_gradients(list_current)
     # plt.show()
-    fig = plt.figure()
-    im = plt.imshow(list_prev, animated=True, cmap=plt.get_cmap('magma'))
-    ani = animation.FuncAnimation(fig, updatefig, interval=1)
-    plt.show()
+    if  mult_lambda < 0.25:
+        fig = plt.figure()
+        im = plt.imshow(list_prev, animated=True, cmap=plt.get_cmap('magma'))
+        ani = animation.FuncAnimation(fig, updatefig, interval=10)
+        plt.colorbar()
+        plt.show()
+    else:
+        print("Lambda too high to calculate: {0}.".format(mult_lambda))
+        print("Equation for lambda: alpha * (d_t / ((d_x) ** 2))")
+        print("must be lower than 0.25")
 
 if __name__ == "__main__":
     main()

@@ -9,5 +9,5 @@ temp_left 750
 temp_bottom 1000
 temp_right 500
 temp_init 3000
-col_size 5
-row_size 5
+col_size 1
+row_size 1
