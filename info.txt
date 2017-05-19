@@ -1,0 +1,13 @@
+flux_bottom 0
+flux_left 0
+alpha 1
+t 200
+d_x 0.1
+d_t 0.001
+temp_top 1000
+temp_left 750
+temp_bottom 1000
+temp_right 500
+temp_init 3000
+col_size 5
+row_size 5
