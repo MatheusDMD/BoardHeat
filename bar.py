@@ -22,6 +22,11 @@ def import_file(file_name):
             content[i][1] = int(content[i][1])
     return dict(content)
 
+def calc_fourier_number(alpha, d_x, d_t):
+    """Calc fourier number."""
+    return alpha * d_t / (d_x**2)
+
+
 def calc_item(list_prev, i, j, mult_lambda):
     """Calc temp to item."""
     blocked = [(0, 0), (d["col"] - 1, d["row"] - 1), (d["col"] - 1, 0), (0, d["row"] - 1)]
@@ -128,6 +133,9 @@ def main():
     """Main func."""
     global d, mult_lambda, im, list_prev
     d = import_file("info.txt")
+    fourier_number = calc_fourier_number(d["alpha"], d["d_x"], d["d_t"])
+    if (fourier_number > 0.25):
+        print("Fourier Number is {0}, we don't ensure that your simulation converges.".format(fourier_number))
     d["row"] = int( d["row_size"]/d["d_x"])
     d["col"] = int( d["col_size"]/d["d_x"])
     print(d["row"])
