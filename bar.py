@@ -129,8 +129,8 @@ def main():
     """Main func."""
     global d, mult_lambda, im, list_prev
     d = import_file("info.txt")
-    fourier_number = calc_mult_lambda(d["alpha"], d["d_x"], d["d_t"])
-    if (fourier_number > 0.25):
+    mult_lambda = calc_mult_lambda(d["alpha"], d["d_x"], d["d_t"])
+    if (mult_lambda > 0.25):
         print("Fourier Number is {0}, we don't ensure that your simulation converges.".format(fourier_number))
         return
     d["row"] = int( d["row_size"]/d["d_x"])
@@ -143,7 +143,6 @@ def main():
                            d["temp_init"],
                            d["col"],
                            d["row"])
-    mult_lambda = calc_mult_lambda(d["alpha"], d["d_x"], d["d_t"])
     # list_current = get_temps_in_time(list_prev, d["t"], mult_lambda, d["row"], d["col"])
     # for i in range(d["col"]):
     #     print(list_current[i])
