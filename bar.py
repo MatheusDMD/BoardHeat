@@ -22,6 +22,7 @@ def import_file(file_name):
             content[i][1] = int(content[i][1])
     return dict(content)
 
+
 def calc_item(list_prev, i, j, mult_lambda):
     """Calc temp to item."""
     blocked = [(0, 0), (d["col"] - 1, d["row"] - 1), (d["col"] - 1, 0), (0, d["row"] - 1)]
@@ -128,6 +129,10 @@ def main():
     """Main func."""
     global d, mult_lambda, im, list_prev
     d = import_file("info.txt")
+    mult_lambda = calc_mult_lambda(d["alpha"], d["d_x"], d["d_t"])
+    if (mult_lambda > 0.25):
+        print("Fourier Number is {0}, we don't ensure that your simulation converges.".format(fourier_number))
+        return
     d["row"] = int( d["row_size"]/d["d_x"])
     d["col"] = int( d["col_size"]/d["d_x"])
     print(d["row"])
@@ -138,8 +143,8 @@ def main():
                            d["temp_init"],
                            d["col"],
                            d["row"])
-    mult_lambda = calc_mult_lambda(d["alpha"], d["d_x"], d["d_t"])
-    #list_current = get_temps_in_time(list_prev, d["t"], mult_lambda, d["row"], d["col"])
+
+    # list_current = get_temps_in_time(list_prev, d["t"], mult_lambda, d["row"], d["col"])
     # for i in range(d["col"]):
     #     print(list_current[i])
     # plot_color_gradients(list_current)
