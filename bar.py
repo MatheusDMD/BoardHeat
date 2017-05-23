@@ -131,7 +131,7 @@ def main():
     d = import_file("info.txt")
     mult_lambda = calc_mult_lambda(d["alpha"], d["d_x"], d["d_t"])
     if (mult_lambda > 0.25):
-        print("Fourier Number is {0}, we don't ensure that your simulation converges.".format(fourier_number))
+        print("Fourier Number is {0}, we don't ensure that your simulation converges.".format(mult_lambda))
         return
     d["row"] = int( d["row_size"]/d["d_x"])
     d["col"] = int( d["col_size"]/d["d_x"])
