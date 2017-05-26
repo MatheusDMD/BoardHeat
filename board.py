@@ -8,7 +8,7 @@ class Board:
         self.d = self.import_file(file_name)
         self.fourier_number = self.calc_fourier_number()
         self.board = self.create_board()
-        self.im = plt.imshow(self.board, animated=True, cmap=plt.get_cmap('magma'))
+        #self.im = plt.imshow(self.board, animated=True, cmap=plt.get_cmap('magma'))
 
     def calc_fourier_number(self):
         """Calc lambda constant."""
@@ -38,7 +38,7 @@ class Board:
             list_main[i][0] = self.d["temp_left"]
             list_main[i][-1] = self.d["temp_right"]
         return list_main
-        
+
     def get_temps_in_time(self):
         """Calc temperatures on bar on time."""
         list_current = [x[:] for x in self.board]
@@ -48,13 +48,13 @@ class Board:
                     list_current[i][j] = self.calc_item(i, j)
             self.board = [x[:] for x in list_current]
         return list_current
-    
-    def __updatefig(*args):
+
+    def __updatefig(self, *args):
         """Calc temperatures on bar on time."""
         list_current = [x[:] for x in self.board]
         for i in range(0, self.d["row"]):
             for j in range(0, self.d["col"]):
-                list_current[i][j] = self.calc_item(self.board, i, j, self.fourier_number)
+                list_current[i][j] = self.calc_item(i, j)
         self.board = [x[:] for x in list_current]
         self.im.set_array(np.array(list_current))
 
@@ -67,12 +67,14 @@ class Board:
             print("Equation for lambda: alpha * (d_t / ((d_x) ** 2))")
             print("must be lower than 0.25")
             return False
-    
+
     def plot_animated(self):
         if not self.valid_fn():
-            return 
+            return
         fig = plt.figure()
+        self.im = plt.imshow(self.board, animated=True, cmap=plt.get_cmap('magma'))
         ani = animation.FuncAnimation(fig, self.__updatefig, interval=10)
+        plt.title('Listed colors (3 masked regions)')
         plt.colorbar()
         plt.show()
 
