@@ -1,0 +1,32 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Board	../board.py	/^class Board:$/;"	kind:class	line:6
+__init__	../board.py	/^    def __init__(self, file_name):$/;"	kind:member	line:7
+__updatefig	../board.py	/^    def __updatefig(*args):$/;"	kind:member	line:52
+bar.py	../bar.py	1;"	kind:file	line:1
+board.py	../board.py	1;"	kind:file	line:1
+calc_fourier_number	../board.py	/^    def calc_fourier_number(self):$/;"	kind:member	line:13
+calc_item	../bar.py	/^def calc_item(list_prev, i, j, mult_lambda):$/;"	kind:function	line:26
+calc_item	../board.py	/^    def calc_item(self, i, j):$/;"	kind:member	line:79
+calc_mult_lambda	../bar.py	/^def calc_mult_lambda(alpha, d_x, d_t):$/;"	kind:function	line:111
+create_bar	../bar.py	/^def create_bar(temp_top,$/;"	kind:function	line:73
+create_board	../board.py	/^    def create_board(self):$/;"	kind:member	line:30
+d	../bar.py	/^d = {}$/;"	kind:variable	line:8
+get_temps_in_time	../bar.py	/^def get_temps_in_time(list_prev, time, mult_lambda, row, col):$/;"	kind:function	line:89
+get_temps_in_time	../board.py	/^    def get_temps_in_time(self):$/;"	kind:member	line:42
+im	../bar.py	/^im = 0$/;"	kind:variable	line:11
+import_file	../bar.py	/^def import_file(file_name):$/;"	kind:function	line:13
+import_file	../board.py	/^    def import_file(self, file_name):$/;"	kind:member	line:18
+list_prev	../bar.py	/^list_prev = []$/;"	kind:variable	line:9
+main	../bar.py	/^def main():$/;"	kind:function	line:128
+main	../time_analysis.py	/^def main():$/;"	kind:function	line:7
+mult_lambda	../bar.py	/^mult_lambda = 0$/;"	kind:variable	line:10
+plot_animated	../board.py	/^    def plot_animated(self):$/;"	kind:member	line:71
+plot_color_gradients	../bar.py	/^def plot_color_gradients(gradient):$/;"	kind:function	line:116
+time_analysis.py	../time_analysis.py	1;"	kind:file	line:1
+updatefig	../bar.py	/^def updatefig(*args):$/;"	kind:function	line:99
+valid_fn	../board.py	/^    def valid_fn(self):$/;"	kind:member	line:61

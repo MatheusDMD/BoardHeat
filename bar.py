@@ -92,7 +92,7 @@ def get_temps_in_time(list_prev, time, mult_lambda, row, col):
     for p in range(time):
         for i in range(0, row):
             for j in range(0, col):
-                list_current[i][j] = calc_item(list_prev, i, j, mult_lambda)
+                list_current[i][j] = self.calc_item(list_prev, i, j, mult_lambda)
         list_prev = [x[:] for x in list_current]
     return list_current
 

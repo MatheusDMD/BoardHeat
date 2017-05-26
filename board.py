@@ -45,7 +45,7 @@ class Board:
         for p in range(self.d["t"]):
             for i in range(0, self.d["row"]):
                 for j in range(0, self.d["col"]):
-                    list_current[i][j] = self.calc_item(self.board, i, j, self.fourier_number)
+                    list_current[i][j] = self.calc_item(i, j)
             self.board = [x[:] for x in list_current]
         return list_current
     
@@ -82,42 +82,42 @@ class Board:
         if (i,j) in blocked:
             return self.board[i][j]
         if (i == (self.d["row"] - 1) ):
-            if ("flux_bottom" in d):
-                return self.fourir_number*(2*self.board[i - 1][j]
+            if ("flux_bottom" in self.d):
+                return self.fourier_number*(2*self.board[i - 1][j]
                                 + self.board[i][j + 1]
                                 - 2*self.d["d_x"]*self.d["flux_bottom"]
-                                + self.board[i][j - 1]) + ((1 - 4 * self.fourir_number) * self.board[i][j])
+                                + self.board[i][j - 1]) + ((1 - 4 * self.fourier_number) * self.board[i][j])
             else:
                 return self.board[i][j]
         elif ((j == 0) ):
-            if ("flux_left" in d):
-                return self.fourir_number*(self.board[i - 1][j]
+            if ("flux_left" in self.d):
+                return self.fourier_number*(self.board[i - 1][j]
                                 + 2*self.board[i][j + 1]
                                 + self.board[i + 1][j]
                                 - 2*self.d["d_x"]*self.d["flux_left"]
-                                + ((1 - 4 * self.fourir_number) * self.board[i][j]))
+                                + ((1 - 4 * self.fourier_number) * self.board[i][j]))
             else:
                 return self.board[i][j]
         elif (j == (self.d["col"] - 1)):
-            if ("flux_right" in d):
-                return self.fourir_number*(self.board[i - 1][j]
+            if ("flux_right" in self.d):
+                return self.fourier_number*(self.board[i - 1][j]
                                 + self.board[i + 1][j]
                                 + 2*self.board[i][j - 1]
                                 - 2*self.d["d_x"]*self.d["flux_right"]
-                                + ((1 - 4 * self.fourir_number) * self.board[i][j]))
+                                + ((1 - 4 * self.fourier_number) * self.board[i][j]))
             else:
                 return self.board[i][j]
         elif ((i == 0)):
-            if ("flux_top" in d):
-                return self.fourir_number*(2*self.board[i + 1][j]
+            if ("flux_top" in self.d):
+                return self.fourier_number*(2*self.board[i + 1][j]
                                 + self.board[i][j + 1]
                                 + self.board[i][j - 1]
                                 - 2*self.d["d_x"]*self.d["flux_top"]
-                                + ((1 - 4 * self.fourir_number) * self.board[i][j]))
+                                + ((1 - 4 * self.fourier_number) * self.board[i][j]))
             else:
                 return self.board[i][j]
         else:
-            return self.fourir_number*(self.board[i + 1][j]
+            return self.fourier_number*(self.board[i + 1][j]
                             + self.board[i - 1][j]
                             + self.board[i][j + 1]
-                            + self.board[i][j - 1]) + ((1 - 4 * self.fourir_number) * self.board[i][j])
+                            + self.board[i][j - 1]) + ((1 - 4 * self.fourier_number) * self.board[i][j])
