@@ -41,6 +41,7 @@ class Board:
 
     def get_temps_in_time(self):
         """Calc temperatures on bar on time."""
+        print("\nTemperatures [C] after: " + str(self.d["t"]) + "s\n")
         list_current = [x[:] for x in self.board]
         for p in range(self.d["t"]):
             for i in range(0, self.d["row"]):
