@@ -74,8 +74,9 @@ class Board:
         fig = plt.figure()
         self.im = plt.imshow(self.board, animated=True, cmap=plt.get_cmap('magma'))
         ani = animation.FuncAnimation(fig, self.__updatefig, interval=10)
-        plt.title('Listed colors (3 masked regions)')
-        plt.colorbar()
+        plt.title('Board Heat Tranfer')
+        cbar = plt.colorbar()
+        cbar.ax.set_ylabel('Temperature [C]')
         plt.show()
 
     def calc_item(self, i, j):
