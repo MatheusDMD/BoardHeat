@@ -7,6 +7,7 @@ class Board:
     def __init__(self, file_name):
         self.d = self.import_file(file_name)
         self.fourier_number = self.calc_fourier_number()
+        self.error = 9223372036854775807
         self.board = self.create_board()
         self.im = plt.imshow(self.board, animated=True, cmap=plt.get_cmap('magma'))
 
@@ -37,18 +38,37 @@ class Board:
         for i in range(self.d["row"]):
             list_main[i][0] = self.d["temp_left"]
             list_main[i][-1] = self.d["temp_right"]
-        return list_main
         
+        return list_main
+
     def get_temps_in_time(self):
+        if (not self.valid_fn()):
+            return None
         """Calc temperatures on bar on time."""
         list_current = [x[:] for x in self.board]
         for p in range(self.d["t"]):
+            error = 0
             for i in range(0, self.d["row"]):
                 for j in range(0, self.d["col"]):
                     list_current[i][j] = self.calc_item(i, j)
+                    cur_error = abs(self.board[i][j] - list_current[i][j])
+                    if cur_error > error:
+                        error = cur_error
+            if error < self.error:
+                self.error = error
+            if (not self.check_tolerence()):
+                print("The error has achieved the tolerence, T = {0}".format(p))
+                return list_current
             self.board = [x[:] for x in list_current]
+        print("Your error is {0}".format(self.error))
         return list_current
-    
+
+    def check_tolerence(self):
+        if self.error < 0.0000001:
+            return False
+        else:
+            return True
+
     def __updatefig(*args):
         """Calc temperatures on bar on time."""
         list_current = [x[:] for x in self.board]
@@ -59,6 +79,7 @@ class Board:
         self.im.set_array(np.array(list_current))
 
     def valid_fn(self):
+        print("Your fourier number is: {0}".format(self.fourier_number))
         """Check valid fourier number."""
         if self.fourier_number < 0.25:
             return True
