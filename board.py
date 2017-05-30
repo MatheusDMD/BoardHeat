@@ -9,7 +9,7 @@ class Board:
         self.fourier_number = self.calc_fourier_number()
         self.error = 9223372036854775807
         self.board = self.create_board()
-        self.im = plt.imshow(self.board, animated=True, cmap=plt.get_cmap('magma'))
+        #self.im = plt.imshow(self.board, animated=True, cmap=plt.get_cmap('magma'))
 
     def calc_fourier_number(self):
         """Calc lambda constant."""
@@ -38,13 +38,13 @@ class Board:
         for i in range(self.d["row"]):
             list_main[i][0] = self.d["temp_left"]
             list_main[i][-1] = self.d["temp_right"]
-        
         return list_main
 
     def get_temps_in_time(self):
         if (not self.valid_fn()):
             return None
         """Calc temperatures on bar on time."""
+        print("\nTemperatures [C] after: " + str(self.d["t"]) + "s\n")
         list_current = [x[:] for x in self.board]
         for p in range(self.d["t"]):
             error = 0
@@ -69,12 +69,12 @@ class Board:
         else:
             return True
 
-    def __updatefig(*args):
+    def __updatefig(self, *args):
         """Calc temperatures on bar on time."""
         list_current = [x[:] for x in self.board]
         for i in range(0, self.d["row"]):
             for j in range(0, self.d["col"]):
-                list_current[i][j] = self.calc_item(self.board, i, j, self.fourier_number)
+                list_current[i][j] = self.calc_item(i, j)
         self.board = [x[:] for x in list_current]
         self.im.set_array(np.array(list_current))
 
@@ -88,13 +88,16 @@ class Board:
             print("Equation for lambda: alpha * (d_t / ((d_x) ** 2))")
             print("must be lower than 0.25")
             return False
-    
+
     def plot_animated(self):
         if not self.valid_fn():
-            return 
+            return
         fig = plt.figure()
+        self.im = plt.imshow(self.board, animated=True, cmap=plt.get_cmap('magma'))
         ani = animation.FuncAnimation(fig, self.__updatefig, interval=10)
-        plt.colorbar()
+        plt.title('Board Heat Tranfer')
+        cbar = plt.colorbar()
+        cbar.ax.set_ylabel('Temperature [C]')
         plt.show()
 
     def calc_item(self, i, j):
