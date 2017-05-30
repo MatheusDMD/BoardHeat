@@ -10,10 +10,35 @@ class Board:
         self.error = 9223372036854775807
         self.board = self.create_board()
         #self.im = plt.imshow(self.board, animated=True, cmap=plt.get_cmap('magma'))
+        if(self.fourier_number != "ERROR"):
+            self.board = self.create_board()
+            self.good_to_go = True
+        else:
+            self.good_to_go = False
 
     def calc_fourier_number(self):
         """Calc lambda constant."""
-        return self.d["alpha"] * (self.d["d_t"] / ((self.d["d_x"]) ** 2))
+        if "alpha" in self.d:
+            if "conductivity" in self.d or "specific_heat" in self.d or "conductivity" in self.d:
+                print("Both: Thermal diffusivity and" +
+                      "(Conductivity or Specific heat capacity or Density)\n" +
+                      "Please only declare one of both")
+                return "ERROR"
+            else:
+                return self.d["alpha"] * (self.d["d_t"] / ((self.d["d_x"]) ** 2))
+        else:
+            if "conductivity" in self.d and "specific_heat" in self.d and "conductivity" in self.d:
+                self.d["alpha"] = self.d["conductivity"]/self.d["specific_heat"]*self.d["density"]
+                return self.d["alpha"] * (self.d["d_t"] / ((self.d["d_x"]) ** 2))
+            else:
+                print("This specific values aren't declared:")
+                if "conductivity" not in self.d:
+                    print("Conductivity")
+                if "specific_heat" not in self.d:
+                    print("Specific heat")
+                if "density" not in self.d:
+                    print("Density")
+                return "ERROR"
 
 
     def import_file(self, file_name):
