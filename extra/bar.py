@@ -92,7 +92,7 @@ def get_temps_in_time(list_prev, time, mult_lambda, row, col):
     for p in range(time):
         for i in range(0, row):
             for j in range(0, col):
-                list_current[i][j] = self.calc_item(list_prev, i, j, mult_lambda)
+                list_current[i][j] = calc_item(list_prev, i, j, mult_lambda)
         list_prev = [x[:] for x in list_current]
     return list_current
 
@@ -128,7 +128,7 @@ def plot_color_gradients(gradient):
 def main():
     """Main func."""
     global d, mult_lambda, im, list_prev
-    d = import_file("info.txt")
+    d = import_file("board.in")
     mult_lambda = calc_mult_lambda(d["alpha"], d["d_x"], d["d_t"])
     if (mult_lambda > 0.25):
         print("Fourier Number is {0}, we don't ensure that your simulation converges.".format(mult_lambda))
@@ -144,11 +144,11 @@ def main():
                            d["col"],
                            d["row"])
 
-    # list_current = get_temps_in_time(list_prev, d["t"], mult_lambda, d["row"], d["col"])
-    # for i in range(d["col"]):
-    #     print(list_current[i])
-    # plot_color_gradients(list_current)
-    # plt.show()
+    list_current = get_temps_in_time(list_prev, d["t"], mult_lambda, d["row"], d["col"])
+    for i in range(d["col"]):
+        print(list_current[i])
+    plot_color_gradients(list_current)
+    plt.show()
     if  mult_lambda < 0.25:
         fig = plt.figure()
         im = plt.imshow(list_prev, animated=True, cmap=plt.get_cmap('magma'))

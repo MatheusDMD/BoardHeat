@@ -27,8 +27,8 @@ class Board:
             else:
                 return self.d["alpha"] * (self.d["d_t"] / ((self.d["d_x"]) ** 2))
         else:
-            if "conductivity" in self.d and "specific_heat" in self.d and "conductivity" in self.d:
-                self.d["alpha"] = self.d["conductivity"]/self.d["specific_heat"]*self.d["density"]
+            if "conductivity" in self.d and "specific_heat" in self.d and "density" in self.d:
+                self.d["alpha"] = self.d["conductivity"]/(self.d["specific_heat"]*self.d["density"])
                 return self.d["alpha"] * (self.d["d_t"] / ((self.d["d_x"]) ** 2))
             else:
                 print("This specific values aren't declared:")
@@ -63,15 +63,20 @@ class Board:
         for i in range(self.d["row"]):
             list_main[i][0] = self.d["temp_left"]
             list_main[i][-1] = self.d["temp_right"]
+        if "flux_left" in self.d:
+            list_main[0][0] = self.d["temp_top"]
+            list_main[-1][0] = self.d["temp_bottom"]
+        if "flux_right" in self.d:
+            list_main[0][-1] = self.d["temp_top"]
+            list_main[-1][-1] = self.d["temp_bottom"]
         return list_main
 
     def get_temps_in_time(self):
         if (not self.valid_fn()):
             return None
         """Calc temperatures on bar on time."""
-        print("\nTemperatures [C] after: " + str(self.d["t"]) + "s\n")
         list_current = [x[:] for x in self.board]
-        for p in range(self.d["t"]):
+        for p in range(int(self.d["t"] / self.d["d_t"])):
             error = 0
             for i in range(0, self.d["row"]):
                 for j in range(0, self.d["col"]):
@@ -81,15 +86,19 @@ class Board:
                         error = cur_error
             if error < self.error:
                 self.error = error
-            if (not self.check_tolerence()):
-                print("The error has achieved the tolerence, T = {0}".format(p))
-                return list_current
+            if ("tolerance" in self.d):
+                if (not self.check_tolerence()):
+                    self.d["t"] = p 
+                    print("The error has achieved the tolerence, T = {0}".format(p * self.d["d_t"]))
+                    print("Error  = {0}".format(self.error))
+                    return list_current
             self.board = [x[:] for x in list_current]
+        print("\nTemperatures [C] after: " + str(self.d["t"]) + "s\n")
         print("Your error is {0}".format(self.error))
         return list_current
 
     def check_tolerence(self):
-        if self.error < 0.0000001:
+        if self.error < self.d["tolerance"]:
             return False
         else:
             return True
@@ -138,31 +147,28 @@ class Board:
                                 + self.board[i][j - 1]) + ((1 - 4 * self.fourier_number) * self.board[i][j])
             else:
                 return self.board[i][j]
-        elif ((j == 0) ):
+        if ((j == 0) ):
             if ("flux_left" in self.d):
                 return self.fourier_number*(self.board[i - 1][j]
-                                + 2*self.board[i][j + 1]
+                                + (2*self.board[i][j + 1])
                                 + self.board[i + 1][j]
-                                - 2*self.d["d_x"]*self.d["flux_left"]
-                                + ((1 - 4 * self.fourier_number) * self.board[i][j]))
+                                - (2*self.d["d_x"]*self.d["flux_left"])) + ((1 - 4 * self.fourier_number) * self.board[i][j])
             else:
                 return self.board[i][j]
-        elif (j == (self.d["col"] - 1)):
+        if (j == (self.d["col"] - 1)):
             if ("flux_right" in self.d):
                 return self.fourier_number*(self.board[i - 1][j]
                                 + self.board[i + 1][j]
                                 + 2*self.board[i][j - 1]
-                                - 2*self.d["d_x"]*self.d["flux_right"]
-                                + ((1 - 4 * self.fourier_number) * self.board[i][j]))
+                                - 2*self.d["d_x"]*self.d["flux_right"]) + ((1 - 4 * self.fourier_number) * self.board[i][j])
             else:
                 return self.board[i][j]
-        elif ((i == 0)):
+        if ((i == 0)):
             if ("flux_top" in self.d):
                 return self.fourier_number*(2*self.board[i + 1][j]
                                 + self.board[i][j + 1]
                                 + self.board[i][j - 1]
-                                - 2*self.d["d_x"]*self.d["flux_top"]
-                                + ((1 - 4 * self.fourier_number) * self.board[i][j]))
+                                - 2*self.d["d_x"]*self.d["flux_top"]) + ((1 - 4 * self.fourier_number) * self.board[i][j])
             else:
                 return self.board[i][j]
         else:

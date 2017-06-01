@@ -5,28 +5,35 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 Board	../board.py	/^class Board:$/;"	kind:class	line:6
+__author__	../boardheat.py	/^__author__  = "Felipe Buniac, Marcelo Andrade, Matheus Marotzke, Rafael Molines"$/;"	kind:variable	line:3
+__copyright__	../boardheat.py	/^__copyright__ = "Copyright 2017, " + __author__$/;"	kind:variable	line:4
 __init__	../board.py	/^    def __init__(self, file_name):$/;"	kind:member	line:7
-__updatefig	../board.py	/^    def __updatefig(*args):$/;"	kind:member	line:52
-bar.py	../bar.py	1;"	kind:file	line:1
+__license__	../boardheat.py	/^__license__ = "GPLv3.0"$/;"	kind:variable	line:5
+__updatefig	../board.py	/^    def __updatefig(self, *args):$/;"	kind:member	line:105
+bar.py	../extra/bar.py	1;"	kind:file	line:1
 board.py	../board.py	1;"	kind:file	line:1
-calc_fourier_number	../board.py	/^    def calc_fourier_number(self):$/;"	kind:member	line:13
-calc_item	../bar.py	/^def calc_item(list_prev, i, j, mult_lambda):$/;"	kind:function	line:26
-calc_item	../board.py	/^    def calc_item(self, i, j):$/;"	kind:member	line:79
-calc_mult_lambda	../bar.py	/^def calc_mult_lambda(alpha, d_x, d_t):$/;"	kind:function	line:111
-create_bar	../bar.py	/^def create_bar(temp_top,$/;"	kind:function	line:73
-create_board	../board.py	/^    def create_board(self):$/;"	kind:member	line:30
-d	../bar.py	/^d = {}$/;"	kind:variable	line:8
-get_temps_in_time	../bar.py	/^def get_temps_in_time(list_prev, time, mult_lambda, row, col):$/;"	kind:function	line:89
-get_temps_in_time	../board.py	/^    def get_temps_in_time(self):$/;"	kind:member	line:42
-im	../bar.py	/^im = 0$/;"	kind:variable	line:11
-import_file	../bar.py	/^def import_file(file_name):$/;"	kind:function	line:13
-import_file	../board.py	/^    def import_file(self, file_name):$/;"	kind:member	line:18
-list_prev	../bar.py	/^list_prev = []$/;"	kind:variable	line:9
-main	../bar.py	/^def main():$/;"	kind:function	line:128
+boardheat.py	../boardheat.py	1;"	kind:file	line:1
+calc_fourier_number	../board.py	/^    def calc_fourier_number(self):$/;"	kind:member	line:19
+calc_item	../board.py	/^    def calc_item(self, i, j):$/;"	kind:member	line:136
+calc_item	../extra/bar.py	/^def calc_item(list_prev, i, j, mult_lambda):$/;"	kind:function	line:26
+calc_mult_lambda	../extra/bar.py	/^def calc_mult_lambda(alpha, d_x, d_t):$/;"	kind:function	line:111
+check_tolerence	../board.py	/^    def check_tolerence(self):$/;"	kind:member	line:99
+create_bar	../extra/bar.py	/^def create_bar(temp_top,$/;"	kind:function	line:73
+create_board	../board.py	/^    def create_board(self):$/;"	kind:member	line:56
+d	../extra/bar.py	/^d = {}$/;"	kind:variable	line:8
+get_temps_in_time	../board.py	/^    def get_temps_in_time(self):$/;"	kind:member	line:74
+get_temps_in_time	../extra/bar.py	/^def get_temps_in_time(list_prev, time, mult_lambda, row, col):$/;"	kind:function	line:89
+im	../extra/bar.py	/^im = 0$/;"	kind:variable	line:11
+import_file	../board.py	/^    def import_file(self, file_name):$/;"	kind:member	line:44
+import_file	../extra/bar.py	/^def import_file(file_name):$/;"	kind:function	line:13
+list_prev	../extra/bar.py	/^list_prev = []$/;"	kind:variable	line:9
+main	../boardheat.py	/^def main(argv):$/;"	kind:function	line:14
+main	../extra/bar.py	/^def main():$/;"	kind:function	line:128
 main	../time_analysis.py	/^def main():$/;"	kind:function	line:7
-mult_lambda	../bar.py	/^mult_lambda = 0$/;"	kind:variable	line:10
-plot_animated	../board.py	/^    def plot_animated(self):$/;"	kind:member	line:71
-plot_color_gradients	../bar.py	/^def plot_color_gradients(gradient):$/;"	kind:function	line:116
+mult_lambda	../extra/bar.py	/^mult_lambda = 0$/;"	kind:variable	line:10
+plot_animated	../board.py	/^    def plot_animated(self):$/;"	kind:member	line:125
+plot_color_gradients	../extra/bar.py	/^def plot_color_gradients(gradient):$/;"	kind:function	line:116
 time_analysis.py	../time_analysis.py	1;"	kind:file	line:1
-updatefig	../bar.py	/^def updatefig(*args):$/;"	kind:function	line:99
-valid_fn	../board.py	/^    def valid_fn(self):$/;"	kind:member	line:61
+truss_main	../boardheat.py	/^def truss_main(inputfile, plot):$/;"	kind:function	line:37
+updatefig	../extra/bar.py	/^def updatefig(*args):$/;"	kind:function	line:99
+valid_fn	../board.py	/^    def valid_fn(self):$/;"	kind:member	line:114

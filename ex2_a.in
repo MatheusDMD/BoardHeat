@@ -1,6 +1,5 @@
 flux_left 0
 alpha 1
-tolerance 0.00000001
 t 10
 d_x 0.08
 d_t 0.001

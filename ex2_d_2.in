@@ -1,9 +1,11 @@
 flux_left 0
-alpha 1
+density 2700.0
+specific_heat 897.0
+conductivity 230.0
 tolerance 0.00000001
-t 10
-d_x 0.08
-d_t 0.001
+t 120
+d_x 0.04
+d_t 0.00039
 temp_top 150
 temp_left 0
 temp_bottom 0

@@ -41,10 +41,11 @@ def truss_main(inputfile, plot):
             board.plot_animated()
         else:
             board = board.get_temps_in_time()
-            t = PrettyTable([x for x in range(len(board))])
-            for item in board:
-                t.add_row(["{0:.2f}".format(a) for a in item])
-            print(t)
+            if board:
+                t = PrettyTable([x for x in range(len(board))])
+                for item in board:
+                    t.add_row(["{0:.2f}".format(a) for a in item])
+                print(t)
 
 
 if __name__ == "__main__":

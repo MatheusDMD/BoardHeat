@@ -5,7 +5,7 @@ import matplotlib.animation as animation
 
 
 def main():
-    board = Board("info.txt")
+    board = Board("board.in")
     #board.plot_animated()
     list_current = board.get_temps_in_time()
     if (list_current):
